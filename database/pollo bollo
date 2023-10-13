@@ -1,0 +1,216 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 13-10-2023 a las 20:09:31
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `pollo bollo`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `administrador`
+--
+
+CREATE TABLE `administrador` (
+  `correo` varchar(64) NOT NULL,
+  `contraseña` varchar(24) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `administrador`
+--
+
+INSERT INTO `administrador` (`correo`, `contraseña`) VALUES
+('', ''),
+('', ''),
+('', ''),
+('', ''),
+('admin@mail.com', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `botarga`
+--
+
+CREATE TABLE `botarga` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(128) NOT NULL,
+  `disponibilidad` int(1) NOT NULL,
+  `imagen` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cliente`
+--
+
+CREATE TABLE `cliente` (
+  `id` int(2) NOT NULL,
+  `nombre` varchar(128) NOT NULL,
+  `direccion` varchar(128) NOT NULL,
+  `correo` varchar(64) NOT NULL,
+  `telefono` varchar(24) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `entrega_regalos`
+--
+
+CREATE TABLE `entrega_regalos` (
+  `id` int(11) NOT NULL,
+  `id_botarga` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `fecha_entrega` date NOT NULL,
+  `precio` double NOT NULL,
+  `cortesia` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `evento`
+--
+
+CREATE TABLE `evento` (
+  `id` int(11) NOT NULL,
+  `id_show` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora_inicio` double NOT NULL,
+  `duracion` int(11) NOT NULL,
+  `direccion` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `renta`
+--
+
+CREATE TABLE `renta` (
+  `id` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `id_botarga` int(11) NOT NULL,
+  `precio` double NOT NULL,
+  `fecha_entrega` date NOT NULL,
+  `duracion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sho_w`
+--
+
+CREATE TABLE `sho_w` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(128) NOT NULL,
+  `descripcion` varchar(256) NOT NULL,
+  `duracion` int(1) NOT NULL,
+  `precio` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `botarga`
+--
+ALTER TABLE `botarga`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `entrega_regalos`
+--
+ALTER TABLE `entrega_regalos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `evento`
+--
+ALTER TABLE `evento`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `renta`
+--
+ALTER TABLE `renta`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `sho_w`
+--
+ALTER TABLE `sho_w`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `botarga`
+--
+ALTER TABLE `botarga`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `entrega_regalos`
+--
+ALTER TABLE `entrega_regalos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `evento`
+--
+ALTER TABLE `evento`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `renta`
+--
+ALTER TABLE `renta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `sho_w`
+--
+ALTER TABLE `sho_w`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
